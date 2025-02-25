@@ -7,6 +7,12 @@ interface EventRecord {
   value?: string | any;
 }
 
+/**
+ * Компонент для визуализации Observable в виде диаграммы мрамора
+ * 
+ * @example
+ * <lib-marble-diagram [observable]="myObservable$" [duration]="2000"></lib-marble-diagram>
+ */
 @Component({
   selector: 'lib-marble-diagram',
   templateUrl: './marble-diagram.component.html',
@@ -69,6 +75,7 @@ export class MarbleDiagramComponent implements OnChanges, OnDestroy {
       }, this.duration);
     }
   }
+
   private addEventRecord(record: EventRecord) {
     if (this.eventRecords.length >= this.maxMarkers) {
       this.eventRecords.shift(); // Удаляем самый старый маркер
@@ -81,6 +88,7 @@ export class MarbleDiagramComponent implements OnChanges, OnDestroy {
       this.changeDetectorRef.markForCheck();
     });
   }
+
   calculateMarkerPosition(eventTime: number): string {
     if (this.duration < 0) {
       const maxTime = Math.max(...this.eventRecords.map(e => e.time), 1000);
@@ -88,6 +96,7 @@ export class MarbleDiagramComponent implements OnChanges, OnDestroy {
     }
     return `${(eventTime / this.duration) * 100}%`;
   }
+
   onMarkerHover(event: EventRecord | null, mouseEvent?: MouseEvent) {
     this.hoveredEvent = event;
     if (event && mouseEvent) {
@@ -107,5 +116,10 @@ export class MarbleDiagramComponent implements OnChanges, OnDestroy {
     } else {
       this.showTooltip = false;
     }
+  }
+
+  getMaxTime(): number {
+    if (this.duration >= 0) return this.duration;
+    return Math.max(...this.eventRecords.map(e => e.time), 1000);
   }
 }

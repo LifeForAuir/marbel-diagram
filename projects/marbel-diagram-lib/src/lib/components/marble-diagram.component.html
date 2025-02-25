@@ -1,5 +1,11 @@
 <div class="marble-diagram">
-  <div class="time-line"></div>
+  <lib-time-scale style="width: 100%;" 
+    [duration]="duration"
+    [ticksCount]="10"
+    [maxTime]="getMaxTime()"
+    [showLine]="true">
+  </lib-time-scale>
+
   <div
     *ngFor="let event of eventRecords"
     class="marker"
