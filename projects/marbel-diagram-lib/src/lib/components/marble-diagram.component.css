@@ -1,0 +1,56 @@
+.marble-diagram {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.marker {
+  position: absolute;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 0 5px;
+  border-radius: 3px;
+  transition: left 0.3s ease-in-out;
+}
+
+.marker.next {
+  background-color: lightgreen;
+  border: 1px solid green;
+}
+
+.marker.error {
+  background-color: lightcoral;
+  border: 1px solid red;
+}
+
+.marker.complete {
+  background-color: lightblue;
+  border: 1px solid blue;
+}
+
+.time-line {
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #ccc;
+}
+
+.tooltip {
+  position: fixed;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+  pointer-events: none;
+}

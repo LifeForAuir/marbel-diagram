@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "marbel-diagram-lib": {
+      "projectType": "library",
+      "root": "projects/marbel-diagram-lib",
+      "sourceRoot": "projects/marbel-diagram-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/marbel-diagram-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/marbel-diagram-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/marbel-diagram-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/marbel-diagram-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "746bf939-be35-48e5-b995-1a3bb39d74d8"
+  }
+}

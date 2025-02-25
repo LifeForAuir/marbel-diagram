@@ -1,0 +1,20 @@
+<div class="marble-diagram">
+  <div class="time-line"></div>
+  <div
+    *ngFor="let event of eventRecords"
+    class="marker"
+    [class.next]="event.type === 'next'"
+    [class.error]="event.type === 'error'"
+    [class.complete]="event.type === 'complete'"
+    [style.left]="calculateMarkerPosition(event.time)"
+    (mouseenter)="onMarkerHover(event, $event)"
+    (mouseleave)="onMarkerHover(null)"
+  >
+    {{ event.value ? event.value.charAt(0) : event.type.charAt(0).toUpperCase() }}
+  </div>
+
+  <div *ngIf="showTooltip && hoveredEvent" class="tooltip" [ngStyle]="{left: tooltipPosition.x + 'px', top: tooltipPosition.y + 'px'}">
+    <div>Time: {{ hoveredEvent.time }}ms</div>
+    <div *ngIf="hoveredEvent.value">Value: {{ hoveredEvent.value }}</div>
+  </div>
+</div>
